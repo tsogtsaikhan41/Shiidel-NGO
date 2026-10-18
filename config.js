@@ -7,7 +7,7 @@ window.SITE_CONFIG = {
   // Бүх маягт (холбоо барих, сорилтын асуулга) энэ имэйл рүү очно.
   // Анхны илгээлтийн дараа FormSubmit-ээс энэ хаяг руу баталгаажуулах
   // имэйл ирнэ. "Activate Form" товчийг нэг удаа дарахад л идэвхжинэ.
-  email: "solutionngo976@gmail.com",
+  email: "tsogtsaikhan41@gmail.com",
 
   phone: "8603 8233",
   address: "Сүхбаатар дүүрэг, 8-р хороо, City Tower, 19 давхар",
