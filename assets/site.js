@@ -267,10 +267,28 @@ Site.coverSVG = function(p){
   const cxp=60+rnd()*280, cyp=40+rnd()*120;
   return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="250" fill="${col}"/><rect width="400" height="250" fill="url(#g${h%999})" /><defs><linearGradient id="g${h%999}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2B33" stop-opacity="0"/><stop offset="1" stop-color="#0F2B33" stop-opacity=".45"/></linearGradient></defs>${arcs}<circle cx="${cxp.toFixed(0)}" cy="${cyp.toFixed(0)}" r="5" fill="#fff" fill-opacity=".8"/></svg>`;
 };
+/* thumbnail: real media first (cover → first image → YouTube → uploaded video),
+   brand art as a small corner badge; full brand art only when there is no media */
+Site.media = function(p){
+  if(p.cover_url) return {kind:"img", url:p.cover_url};
+  const bl = p.blocks||[];
+  const im = bl.find(b=>b.type==="image" && b.url); if(im) return {kind:"img", url:im.url};
+  const yt = bl.find(b=>b.type==="youtube" && Site.ytId(b.url)); if(yt) return {kind:"img", url:`https://i.ytimg.com/vi/${Site.ytId(yt.url)}/hqdefault.jpg`};
+  const vd = bl.find(b=>b.type==="video" && b.url); if(vd) return {kind:"video", url:vd.url};
+  return null;
+};
+Site.badgeSVG = function(p){
+  const col = (byId[p.area]&&byId[p.area].color) || "#0F2B33";
+  return `<svg viewBox="0 0 46 46"><rect width="46" height="46" fill="${col}"/><g fill="none" stroke="#fff" stroke-linecap="round"><path d="M6 36 Q23 6 40 36" stroke-width="2.4"/><path d="M11 36 Q23 15 35 36" stroke-width="1.8" stroke-opacity=".7"/><path d="M16 36 Q23 24 30 36" stroke-width="1.4" stroke-opacity=".5"/></g><circle cx="33" cy="12" r="2.4" fill="#fff"/></svg>`;
+};
 Site.cover = function(p, cls="cover"){
-  const play = Site.hasVideo(p) ? `<span class="play-badge" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="#fff"/></svg></span>` : "";
-  const inner = p.cover_url ? `<img src="${esc(p.cover_url)}" alt="" loading="lazy">` : Site.coverSVG(p);
-  return `<div class="${cls}">${inner}${play}</div>`;
+  const play = Site.hasVideo(p) ? `<span class="play-badge" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M4 2.2v9.6l7.6-4.8z" fill="#fff"/></svg></span>` : "";
+  const m = Site.media(p);
+  if(!m) return `<div class="${cls}">${Site.coverSVG(p)}${play}</div>`;
+  const inner = m.kind==="video"
+    ? `<video class="cover-media" src="${esc(m.url)}#t=0.5" muted playsinline preload="metadata" aria-hidden="true"></video>`
+    : `<img class="cover-media" src="${esc(m.url)}" alt="" loading="lazy">`;
+  return `<div class="${cls} has-media">${inner}<span class="cover-shade" aria-hidden="true"></span><span class="cover-badge" aria-hidden="true">${Site.badgeSVG(p)}</span>${play}</div>`;
 };
 
 /* cards */
