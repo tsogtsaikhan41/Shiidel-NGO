@@ -9,11 +9,11 @@ const Site = window.Site = {esc, byId, reduced};
 
 /* ---------------- header & footer ---------------- */
 const NAV = [
-  ["index.html","Нүүр","home"],["services.html","Зөвлөх үйлчилгээ","services"],
+  ["services.html","Зөвлөх үйлчилгээ","services"],
   ["academy.html","Манлайллын академи","academy"],["insights.html","Судалгаа","insights"],
-  ["blog.html","Блог","blog"],["#about","Бидний тухай","about"]
+  ["blog.html","Блог","blog"]
 ];
-const LOGO = `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30 Q20 6 36 30" fill="none" stroke="#1E5C86" stroke-width="3"/><path d="M4 30h32" stroke="#2C8566" stroke-width="3"/><path d="M12 30v-8M20 30V17M28 30v-8" stroke="#0F2B33" stroke-width="2"/></svg>`;
+const LOGO = `<img src="assets/logo.png" alt="" width="44" height="44">`;
 const INTERESTS = ["5 менежментийн оношилгоо","Тусдаа зөвлөгөө","Цогц зөвлөгөө","Манлайллын академи","Нийгмийн хөтөлбөр","Бусад"];
 
 function header(){
@@ -81,7 +81,7 @@ function footer(){
   </div></section>
   <div class="foot-bar"><div class="wrap">
     <span>© ${new Date().getFullYear()} ${esc(C.orgName||"")}</span>
-    <nav aria-label="Доод цэс">${NAV.slice(1,5).map(([h,t])=>`<a href="${h}">${t}</a>`).join("")}<a href="admin.html">Нэвтрэх</a></nav>
+    <nav aria-label="Доод цэс">${NAV.map(([h,t])=>`<a href="${h}">${t}</a>`).join("")}<a href="admin.html">Нэвтрэх</a></nav>
   </div></div>
 </footer>`;
   const f = document.getElementById("contactForm");
@@ -97,7 +97,7 @@ function footer(){
     });
     btn.disabled=false;
     if(ok){ st.textContent="Баярлалаа. Таны хүсэлт хүлээн авагдлаа, бид удахгүй холбогдоно."; st.classList.add("ok"); f.reset(); }
-    else { st.textContent=`Илгээхэд алдаа гарлаа. ${C.phone||""} утсаар эсвэл ${C.email||""} хаягаар холбогдоно уу.`; st.classList.add("err"); }
+    else { st.textContent=Site.failText(); st.classList.add("err"); }
   });
 }
 
@@ -110,8 +110,18 @@ Site.send = async function(subject, fields){
       body: JSON.stringify(Object.assign({_subject:subject, _template:"table", _captcha:"false"}, fields))
     });
     const j = await r.json().catch(()=>({}));
-    return r.ok && String(j.success)==="true";
-  }catch(e){ return false; }
+    if(r.ok && String(j.success)==="true"){ Site.lastError=null; return true; }
+    const msg = String(j.message||"");
+    Site.lastError = {activation:/activat/i.test(msg), msg: msg || ("HTTP "+r.status)};
+    console.warn("FormSubmit:", r.status, msg);
+    return false;
+  }catch(e){ Site.lastError={activation:false, msg:String(e.message||e)}; console.warn("FormSubmit:", e); return false; }
+};
+/* human-readable reason for the last failed send */
+Site.failText = function(){
+  const e = Site.lastError||{};
+  if(e.activation) return `Маягт анх удаа ашиглагдаж байна. ${C.email} хаяг руу FormSubmit-ээс баталгаажуулах имэйл илгээгдлээ. «Activate Form» товчийг дарсны дараа дахин илгээнэ үү.`;
+  return `Илгээхэд алдаа гарлаа${e.msg?" ("+e.msg+")":""}. ${C.phone||""} утсаар эсвэл ${C.email||""} хаягаар холбогдоно уу.`;
 };
 
 /* "Мэдээлэл авах" buttons: any element with data-ask="..." */
