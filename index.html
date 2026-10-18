@@ -4,698 +4,254 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Шийдэл | Тогтвортой хөгжлийн гүүр</title>
-<meta name="description" content="«Шийдэл» Тогтвортой Хөгжлийн Гүүр: хүний нөөц, маркетинг, борлуулалт, санхүү, үйл ажиллагааны менежментийг холбож, тогтвортой бизнесийг бий болгох зөвлөх, сургалтын байгууллага.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Хүний нөөц, маркетинг, борлуулалт, санхүү, үйл ажиллагааны менежментийг холбож, тогтвортой бизнесийг бий болгох зөвлөх, сургалтын байгууллага.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0F2B33;        /* deep teal ink: text, dark sections */
-  --ink-soft:#4A6168;
-  --blue:#1E5C86;       /* bridge blue */
-  --green:#2C8566;      /* growth green */
-  --green-soft:#E3F0EA;
-  --mist:#F0F4F4;       /* section tint */
-  --paper:#FFFFFF;
-  --line:#D5DFDF;
-  --serif:"Source Serif 4", Georgia, serif;
-  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --wrap:1180px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-img,svg{display:block;max-width:100%}
-a{color:inherit}
-button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;margin:0;letter-spacing:-.01em}
-h2{font-size:clamp(30px,4vw,44px)}
-h3{font-size:22px}
-p{margin:0}
-.lede{font-size:19px;color:var(--ink-soft);max-width:62ch}
-section{padding:112px 0}
-.tint{background:var(--mist)}
-.dark{background:var(--ink);color:#E7EFEF}
-.dark .lede{color:#A9BFC2}
-.sec-head{display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:end;margin-bottom:56px}
-.sec-head .lede{justify-self:start}
-
-/* ---------- header ---------- */
-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
-header.scrolled{border-bottom-color:var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand svg{width:34px;height:34px}
-.brand b{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.01em}
-.brand span{display:block;font-size:12px;color:var(--ink-soft);line-height:1.2}
-nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
-nav a{text-decoration:none;font-size:15px;color:var(--ink-soft)}
-nav a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;font-size:15px;font-weight:500;transition:background .2s,color .2s}
-.btn:hover{background:var(--blue);border-color:var(--blue)}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff}
-.menu-btn{display:none;background:none;border:0;padding:8px}
-.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0}
-
-/* ---------- hero ---------- */
-.hero{padding:72px 0 96px}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(42px,6.2vw,78px);font-weight:400;letter-spacing:-.025em;line-height:1.04}
-.hero .lede{margin:28px 0 36px}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-.bridge{position:relative}
-.bridge svg{width:100%;height:auto}
-.bridge .edge{stroke:var(--line);stroke-width:1.4;fill:none;transition:stroke .35s,stroke-width .35s,opacity .35s}
-.bridge .edge.on{stroke:var(--green);stroke-width:2.4}
-.bridge .edge.off{opacity:.35}
-.bridge .node circle{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;transition:fill .25s,stroke .25s}
-.bridge .node text{font-family:var(--sans);font-size:16px;fill:var(--ink);text-anchor:middle;pointer-events:none}
-.bridge .node{cursor:pointer;outline:none}
-.bridge .node:hover circle,.bridge .node:focus-visible circle{stroke:var(--blue);stroke-width:2.4}
-.bridge .node.active circle{fill:var(--ink);stroke:var(--ink)}
-.bridge .node.active text{fill:#fff}
-.bridge .core{font-family:var(--serif);font-size:19px;fill:var(--ink-soft);text-anchor:middle}
-.bridge .core-bg{fill:var(--paper)}
-.tint .bridge .core-bg{fill:var(--mist)}
-.draw .edge{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 1.6s ease forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-
-/* ---------- symptom vs cause ---------- */
-.causes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.cause{padding:32px 28px 8px 0;border-right:1px solid var(--line);margin-right:28px}
-.cause:last-child{border-right:0;margin-right:0}
-.cause .seen{font-size:14px;color:var(--ink-soft);margin-bottom:6px}
-.cause .seen-txt{font-family:var(--serif);font-size:23px;line-height:1.3;margin-bottom:22px}
-.cause .root{font-size:14px;color:var(--green);margin-bottom:6px;font-weight:500}
-.cause .root-txt{color:var(--ink-soft)}
-
-/* ---------- explorer ---------- */
-.explorer{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
-.panel{min-height:420px}
-.panel .area-name{font-size:clamp(32px,4vw,46px);margin-bottom:12px}
-.panel .role{font-size:19px;color:var(--ink-soft);margin-bottom:32px;max-width:52ch}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:36px}
-.cols h4,.links h4{font-family:var(--sans);font-size:14px;font-weight:600;margin:0 0 12px;color:var(--ink)}
-.cols ul{list-style:none;margin:0;padding:0}
-.cols li{padding:10px 0;border-top:1px solid var(--line);font-size:16px}
-.links ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.links li{display:grid;grid-template-columns:150px 1fr;gap:16px;font-size:15.5px;padding:12px 16px;background:var(--paper);border-left:2px solid var(--green)}
-.links li b{font-weight:600}
-.panel-fade{animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* ---------- toggle / tabs ---------- */
-.seg{display:inline-flex;background:var(--mist);border-radius:999px;padding:4px;margin-bottom:44px}
-.dark .seg{background:rgba(255,255,255,.08)}
-.seg button{border:0;background:transparent;padding:11px 22px;border-radius:999px;font-size:15px;font-weight:500;color:var(--ink-soft);transition:background .2s,color .2s}
-.dark .seg button{color:#A9BFC2}
-.seg button[aria-selected="true"]{background:var(--ink);color:#fff}
-.dark .seg button[aria-selected="true"]{background:#fff;color:var(--ink)}
-[role="tabpanel"][hidden]{display:none}
-
-/* consulting */
-.svc-list{border-top:1px solid var(--line)}
-.svc{display:grid;grid-template-columns:240px 1fr 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
-.svc h3{font-size:24px}
-.svc p{color:var(--ink-soft)}
-.svc ul{margin:0;padding-left:18px;color:var(--ink-soft)}
-.svc li{margin-bottom:4px}
-.facts{display:flex;gap:48px;flex-wrap:wrap;margin-top:36px;color:var(--ink-soft);font-size:15px}
-.facts b{display:block;font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink)}
-.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink)}
-.phase{padding:26px 24px 0 0}
-.phase .n{font-family:var(--serif);font-size:15px;color:var(--green);margin-bottom:14px}
-.phase h3{font-size:22px;margin-bottom:10px}
-.phase p{color:var(--ink-soft);font-size:16px}
-
-/* process */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:0;counter-reset:s}
-.steps li{counter-increment:s;padding:22px 16px 0 0;border-top:1px solid rgba(255,255,255,.25);position:relative}
-.steps li::before{content:counter(s);position:absolute;top:-14px;left:0;width:28px;height:28px;border-radius:50%;background:var(--ink);border:1px solid rgba(255,255,255,.5);font-size:13px;display:grid;place-items:center;color:#fff}
-.steps li:first-child::before{background:var(--green);border-color:var(--green)}
-.steps b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;margin:14px 0 6px;color:#fff}
-.steps span{font-size:14.5px;color:#A9BFC2;line-height:1.5}
-.hc{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:80px}
-.hc h2{color:#fff}
-
-/* academy */
-.stage-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:36px;align-items:end}
-.stage-head h3{font-size:34px}
-.stage-head .sub{color:var(--ink-soft);font-size:15px;margin-top:6px}
-.badge{display:inline-block;font-size:13px;padding:4px 12px;border-radius:999px;background:var(--green-soft);color:var(--green);font-weight:500;margin-top:14px}
-.badge.wip{background:#E6EEF5;color:var(--blue)}
-.modules{border-top:1px solid var(--line)}
-.mod{border-bottom:1px solid var(--line)}
-.mod-btn{width:100%;display:grid;grid-template-columns:48px 1.2fr 1fr 28px;gap:16px;align-items:center;background:none;border:0;text-align:left;padding:22px 0}
-.mod-btn .num{font-family:var(--serif);color:var(--ink-soft);font-size:16px}
-.mod-btn .t{font-family:var(--serif);font-size:24px}
-.mod-btn .cat{color:var(--ink-soft);font-size:15px}
-.mod-btn .chev{width:22px;height:22px;transition:transform .25s}
-.mod-btn[aria-expanded="true"] .chev{transform:rotate(45deg)}
-.mod-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
-.mod-body>div{overflow:hidden}
-.mod.open .mod-body{grid-template-rows:1fr}
-.mod-inner{display:grid;grid-template-columns:48px 1.2fr 1fr 28px;gap:16px;padding:0 0 26px}
-.mod-inner ul{grid-column:2;list-style:none;margin:0;padding:0}
-.mod-inner li{padding:6px 0 6px 18px;position:relative;color:var(--ink-soft)}
-.mod-inner li::before{content:"";position:absolute;left:0;top:15px;width:8px;height:1.5px;background:var(--green)}
-.trainer{grid-column:3;font-size:15px}
-.trainer b{display:block;font-weight:600}
-.trainer span{color:var(--ink-soft)}
-.wip-box{border:1px dashed var(--line);padding:40px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;background:var(--paper)}
-.wip-box p{color:var(--ink-soft)}
-.path{display:flex;align-items:center;gap:14px;margin-bottom:44px;flex-wrap:wrap;font-size:15px;color:var(--ink-soft)}
-.path i{width:36px;height:1px;background:var(--line);display:inline-block}
-
-/* insights */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:-20px 0 36px}
-.chip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--ink-soft)}
-.chip[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);background:var(--mist)}
-.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px}
-.post{background:none;border:0;padding:0;text-align:left;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--ink);padding-top:20px}
-.post:first-child{grid-column:span 2;border-top-width:2px}
-.post:first-child h3{font-size:34px}
-.post .meta{font-size:13.5px;color:var(--green);font-weight:500}
-.post h3{font-size:24px;transition:color .2s}
-.post:hover h3{color:var(--blue)}
-.post p{color:var(--ink-soft);font-size:16px}
-.post .by{font-size:13.5px;color:var(--ink-soft);margin-top:auto}
-.empty{color:var(--ink-soft);padding:40px 0}
-
-/* reader */
-dialog{border:0;padding:0;max-width:760px;width:calc(100% - 32px);max-height:calc(100vh - 48px);border-radius:6px;color:var(--ink)}
-dialog::backdrop{background:rgba(15,43,51,.55)}
-.reader{padding:56px 64px 64px;overflow:auto}
-.reader .meta{font-size:14px;color:var(--green);font-weight:500;margin-bottom:14px}
-.reader h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
-.reader .by{color:var(--ink-soft);font-size:14.5px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-.reader .body p{font-family:var(--serif);font-size:19px;line-height:1.7;margin-bottom:18px;max-width:64ch}
-.reader .body h3{font-size:22px;margin:30px 0 10px}
-.close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center}
-
-/* csr */
-.csr{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.csr blockquote{margin:0;font-family:var(--serif);font-size:clamp(26px,3.2vw,36px);line-height:1.25}
-.csr ul{padding-left:18px;color:var(--ink-soft);margin:20px 0 28px}
-
-/* contact */
-.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px}
-.contact dl{margin:36px 0 0}
-.contact dt{font-size:14px;color:#A9BFC2;margin-top:18px}
-.contact dd{margin:2px 0 0;font-size:18px}
-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-label{display:grid;gap:6px;font-size:14px;color:#A9BFC2}
-label.full{grid-column:1/-1}
-input,select,textarea{font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:13px 14px}
-select option{color:var(--ink)}
-input:focus,select:focus,textarea:focus{outline:none;border-color:#fff}
-textarea{min-height:120px;resize:vertical}
-form .btn{background:#fff;color:var(--ink);border-color:#fff;justify-self:start}
-form .btn:hover{background:var(--green);border-color:var(--green);color:#fff}
-.note{grid-column:1/-1;font-size:14px;color:#A9BFC2;min-height:20px}
-
-footer{background:var(--ink);color:#A9BFC2;border-top:1px solid rgba(255,255,255,.12);padding:32px 0;font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* ---------- responsive ---------- */
-@media (max-width:1000px){
-  .steps{grid-template-columns:repeat(2,1fr);row-gap:36px}
-  .phases{grid-template-columns:1fr 1fr;row-gap:32px}
-  .posts{grid-template-columns:1fr 1fr}
-}
-@media (max-width:860px){
-  section{padding:80px 0}
-  nav{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px 24px}
-  nav.open{display:block}
-  nav ul{flex-direction:column;gap:14px}
-  .menu-btn{display:block}
-  .bar .btn{display:none}
-  .hero-grid,.sec-head,.explorer,.hc,.stage-head,.csr,.contact,.wip-box{grid-template-columns:1fr;gap:36px}
-  .hero{padding:40px 0 72px}
-  .bridge{max-width:440px;margin:0 auto}
-  #heroBridge{display:none}
-  .bridge .node text{font-size:19px}
-  .causes{grid-template-columns:1fr}
-  .cause{border-right:0;margin-right:0;border-bottom:1px solid var(--line);padding-right:0}
-  .svc{grid-template-columns:1fr;gap:12px}
-  .cols{grid-template-columns:1fr}
-  .links li{grid-template-columns:1fr;gap:2px}
-  .mod-btn{grid-template-columns:36px 1fr 24px}
-  .mod-btn .cat{grid-column:2;grid-row:2;margin-top:-10px}
-  .mod-btn .chev{grid-column:3;grid-row:1}
-  .mod-inner{grid-template-columns:36px 1fr;row-gap:16px}
-  .mod-inner ul,.trainer{grid-column:2}
-  .reader{padding:48px 24px}
-}
-@media (max-width:600px){
-  body{font-size:16px}
-  .steps,.phases,.posts{grid-template-columns:1fr}
-  .post:first-child{grid-column:auto}
-  .post:first-child h3{font-size:28px}
-  form{grid-template-columns:1fr}
-  .wrap{padding:0 16px}
-  .seg{display:flex;overflow-x:auto}
-  .seg button{padding:10px 16px;white-space:nowrap}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .draw .edge{stroke-dashoffset:0}
-}
-</style>
+<link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
-
-<header id="top">
-  <div class="wrap bar">
-    <a class="brand" href="#top" aria-label="Шийдэл нүүр хуудас">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30 Q20 6 36 30" fill="none" stroke="#1E5C86" stroke-width="3"/><path d="M4 30h32" stroke="#2C8566" stroke-width="3"/><path d="M12 30v-8M20 30V17M28 30v-8" stroke="#0F2B33" stroke-width="2"/></svg>
-      <div><b>Шийдэл</b><span>Тогтвортой хөгжлийн гүүр</span></div>
-    </a>
-    <nav id="nav" aria-label="Үндсэн цэс">
-      <ul>
-        <li><a href="#approach">Арга зүй</a></li>
-        <li><a href="#consulting">Зөвлөх үйлчилгээ</a></li>
-        <li><a href="#academy">Манлайллын академи</a></li>
-        <li><a href="#insights">Судалгаа, блог</a></li>
-        <li><a href="#contact">Холбоо барих</a></li>
-      </ul>
-    </nav>
-    <a class="btn" href="#contact">Оношилгоо захиалах</a>
-    <button class="menu-btn" aria-label="Цэс нээх" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
+<body data-page="home">
+<div data-header></div>
 <main>
-<!-- HERO -->
+
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
       <h1>Нэг хэлтсийг биш, бизнесийг бүхэлд нь холбодог.</h1>
       <p class="lede">Бид хүний нөөц, маркетинг, борлуулалт, санхүү, үйл ажиллагааны менежментийг хооронд нь уялдуулж, тогтвортой өсөх бизнесийг бий болгодог.</p>
-      <div class="hero-ctas">
-        <a class="btn" href="#contact">Оношилгоо захиалах</a>
-        <a class="btn ghost" href="#approach">Арга зүйтэй танилцах</a>
+      <div class="ctas">
+        <a class="btn" href="#challenge">Сорилтоо хуваалцах</a>
+        <a class="btn ghost" href="services.html">Үйлчилгээтэй танилцах</a>
       </div>
     </div>
-    <div class="bridge draw" id="heroBridge" aria-hidden="true"></div>
+    <div id="heroBridge"></div>
   </div>
 </section>
 
-<!-- SYMPTOM VS CAUSE -->
-<section class="tint">
+<section class="sec tint">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Асуудал нэг газар харагдаж, өөр газар үүсдэг.</h2>
-      <p class="lede">Ихэнх байгууллага шинж тэмдгийг засдаг. Бид шалтгааныг нь хайдаг, учир нь таван менежмент бие биедээ шууд нөлөөлдөг.</p>
+      <div><p class="kicker">Бидний хийдэг зүйл</p><h2>Бизнесийн менежментийн цогц шийдэл</h2></div>
+      <p class="lede">Тодорхой нэг чиглэлээр тусад нь, эсвэл таван менежментийг холбож цогцоор нь зөвлөнө. Аль ч хэлбэрээр эхэлсэн бид бизнесийг бүхэлд нь хардаг.</p>
     </div>
-    <div class="causes">
-      <div class="cause"><p class="seen">Харагдаж буй асуудал</p><p class="seen-txt">Борлуулалт буурч байна</p><p class="root">Үндсэн шалтгаан байж болох</p><p class="root-txt">Шинэ ажилтнууд сургалтгүй, бүтээгдэхүүнээ мэдэхгүй байна. Энэ бол хүний нөөцийн асуудал.</p></div>
-      <div class="cause"><p class="seen">Харагдаж буй асуудал</p><p class="seen-txt">Маркетингийн зардал өгөөжгүй</p><p class="root">Үндсэн шалтгаан байж болох</p><p class="root-txt">Шинэ хэрэглэгч ирж байгаа ч муу үйлчилгээнээс болж эргэж ирдэггүй. Энэ бол үйл ажиллагааны асуудал.</p></div>
-      <div class="cause"><p class="seen">Харагдаж буй асуудал</p><p class="seen-txt">Мөнгөн урсгал хүрэлцэхгүй</p><p class="root">Үндсэн шалтгаан байж болох</p><p class="root-txt">Борлуулалтыг өсгөхийн тулд хэт урт төлбөрийн нөхцөл, хямдрал өгсөн. Энэ бол борлуулалтын бодлогын асуудал.</p></div>
+    <div class="offer">
+      <a href="services.html">
+        <svg class="art" viewBox="0 0 220 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g fill="none" stroke-width="1.4"><circle cx="40" cy="60" r="22" stroke="#0F2B33"/><circle cx="180" cy="60" r="22" stroke="#0F2B33"/><path d="M62 60 Q110 10 158 60" stroke="#1E5C86"/><path d="M62 60 Q110 110 158 60" stroke="#2C8566"/></g></svg>
+        <h3>Зөвлөх үйлчилгээ</h3>
+        <p>Хүний нөөц, маркетинг, борлуулалт, санхүү, үйл ажиллагаа. Тусад нь эсвэл цогцоор нь.</p>
+        <span class="go">Дэлгэрэнгүй</span>
+      </a>
+      <a href="academy.html">
+        <svg class="art" viewBox="0 0 220 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g fill="none" stroke-width="1.4"><path d="M20 100 H70 V75 H120 V50 H170 V25 H205" stroke="#0F2B33"/><circle cx="45" cy="88" r="5" fill="#1E5C86" stroke="none"/><circle cx="95" cy="63" r="5" fill="#2F7C8F" stroke="none"/><circle cx="145" cy="38" r="5" fill="#2C8566" stroke="none"/></g></svg>
+        <h3>Манлайллын академи</h3>
+        <p>Өөрийгөө танихаас эхлээд багаар хамтрах, манлайллын өв хүртэлх гурван шатлалт хөтөлбөр.</p>
+        <span class="go">Дэлгэрэнгүй</span>
+      </a>
+      <a href="services.html#csr">
+        <svg class="art" viewBox="0 0 220 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g fill="none" stroke-width="1.4"><path d="M20 100 H200" stroke="#0F2B33"/><path d="M40 100 Q110 20 180 100" stroke="#2C8566"/><path d="M75 100 V70 M110 100 V58 M145 100 V70" stroke="#1E5C86"/></g></svg>
+        <h3>Нийгмийн хөтөлбөр</h3>
+        <p>Сурагчдад зориулсан дээрэлхэлтээс урьдчилан сэргийлэх, эрх зүйн мэдлэг олгох хөтөлбөр.</p>
+        <span class="go">Дэлгэрэнгүй</span>
+      </a>
     </div>
+    <div class="areas-strip" aria-label="Таван менежмент"><span>Хүний нөөц</span><span>Маркетинг</span><span>Борлуулалт</span><span>Санхүү</span><span>Үйл ажиллагаа, үйлчилгээ</span></div>
   </div>
 </section>
 
-<!-- APPROACH / EXPLORER -->
-<section id="approach">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Таван менежмент, нэг систем.</h2>
-      <p class="lede">Менежмент бүрийг сонгож, тухайн чиглэлийн үүрэг, түгээмэл асуудал, бусад дөрвөн менежменттэй хэрхэн холбогддогийг харна уу.</p>
-    </div>
-    <div class="explorer">
-      <div class="bridge" id="explorerBridge"></div>
-      <div class="panel" id="panel" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONSULTING -->
-<section id="consulting" class="tint">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Зөвлөх үйлчилгээ</h2>
-      <p class="lede">Тодорхой нэг чиглэлээр тусад нь, эсвэл таван менежментийг холбож цогцоор нь. Аль ч хэлбэрээр эхэлсэн бид бизнесийг бүхэлд нь хардаг.</p>
-    </div>
-    <div class="seg" role="tablist" aria-label="Зөвлөгөөний хэлбэр">
-      <button role="tab" id="t-sep" aria-selected="true" aria-controls="p-sep">Тусдаа зөвлөгөө</button>
-      <button role="tab" id="t-int" aria-selected="false" aria-controls="p-int" tabindex="-1">Цогц зөвлөгөө</button>
-    </div>
-    <div role="tabpanel" id="p-sep" aria-labelledby="t-sep">
-      <div class="svc-list" id="svcList"></div>
-      <div class="facts"><div><b>1–3 сар</b>Хугацаа</div><div><b>Нэг чиглэл</b>Хамрах хүрээ</div><div><b>Чиглэлийн оношилгоо</b>Эхлэх цэг</div></div>
-    </div>
-    <div role="tabpanel" id="p-int" aria-labelledby="t-int" hidden>
-      <div class="phases">
-        <div class="phase"><p class="n">1-р үе шат</p><h3>Оношилгоо</h3><p>Таван менежментийг үнэлж, хоорондын уялдаа хаана алдагдаж буйг зураглана.</p></div>
-        <div class="phase"><p class="n">2-р үе шат</p><h3>Тэргүүлэх чиглэл</h3><p>Хамгийн их нөлөө үзүүлэх хоёроос гурван өөрчлөлтийг удирдлагатай хамт сонгоно.</p></div>
-        <div class="phase"><p class="n">3-р үе шат</p><h3>Хэрэгжүүлэлт</h3><p>Хэлтэс бүртэй хамтран ажиллаж, шийдлийг өдөр тутмын үйл ажиллагаанд нэвтрүүлнэ.</p></div>
-        <div class="phase"><p class="n">4-р үе шат</p><h3>Хэмжилт, тогтвортой байдал</h3><p>Үр дүнг тогтмол хэмжиж, систем танай багийн гарт бие даан ажиллах хүртэл дэмжинэ.</p></div>
-      </div>
-      <div class="facts"><div><b>6–12 сар</b>Хугацаа</div><div><b>Таван менежмент</b>Хамрах хүрээ</div><div><b>5 менежментийн оношилгоо</b>Эхлэх цэг</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HEALTH CHECK + PROCESS -->
-<section class="dark">
-  <div class="wrap">
-    <div class="hc">
-      <h2>5 менежментийн оношилгоо</h2>
-      <p class="lede">Бидний хамтын ажиллагаа үргэлж оношилгоогоор эхэлдэг. Богино хугацаанд таван менежментийг үнэлж, уялдаа хаана тасарч буйг, юуг хамгийн түрүүнд засах ёстойг тодорхой харуулна.</p>
-    </div>
-    <ol class="steps">
-      <li><b>Холбоо барих</b><span>Таны хэрэгцээг сонсоно</span></li>
-      <li><b>Танилцах уулзалт</b><span>30 минутад зорилго, асуудлыг тодорхойлно</span></li>
-      <li><b>Оношилгоо</b><span>Үндсэн шалтгааныг олно</span></li>
-      <li><b>Санал</b><span>Шийдэл, хугацаа, төсвийг танилцуулна</span></li>
-      <li><b>Хэрэгжүүлэлт</b><span>Хамтдаа хэрэгжүүлнэ</span></li>
-      <li><b>Үр дүнгийн тайлан</b><span>Өөрчлөлтийг тоогоор харуулна</span></li>
-      <li><b>Тасралтгүй дэмжлэг</b><span>Дараагийн алхмыг төлөвлөнө</span></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ACADEMY -->
-<section id="academy">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Манлайллын академи</h2>
-      <p class="lede">Байгууллагын ажилтнуудад зориулсан гурван шатлалт хөтөлбөр. Шат бүр долоон модультай бөгөөд хувь хүнээс эхэлж, баг, байгууллагын манлайлал руу шилжинэ.</p>
-    </div>
-    <div class="path" aria-hidden="true"><span>Өөрийгөө таних</span><i></i><span>Багаар хамтрах</span><i></i><span>Манлайллын өв</span></div>
-    <div class="seg" role="tablist" aria-label="Хөтөлбөрийн шат">
-      <button role="tab" id="t-s1" aria-selected="true" aria-controls="p-s1">1. Self Awareness</button>
-      <button role="tab" id="t-s2" aria-selected="false" aria-controls="p-s2" tabindex="-1">2. Team Collab</button>
-      <button role="tab" id="t-s3" aria-selected="false" aria-controls="p-s3" tabindex="-1">3. Legacy of Leadership</button>
-    </div>
-
-    <div role="tabpanel" id="p-s1" aria-labelledby="t-s1">
-      <div class="stage-head">
-        <div><h3>Self Awareness</h3><p class="sub">Өөрийгөө таних</p><span class="badge">7 модуль, бүртгэл нээлттэй</span></div>
-        <p class="lede">Манлайлал өөрийгөө ойлгохоос эхэлдэг. Хувь хүний хөгжил, брендинг, харилцаа, эрх зүй, эрүүл мэнд, карьерын шийдвэрийг хамарсан долоон модуль.</p>
-      </div>
-      <div class="modules" id="modules"></div>
-    </div>
-
-    <div role="tabpanel" id="p-s2" aria-labelledby="t-s2" hidden>
-      <div class="stage-head">
-        <div><h3>Team Collab</h3><p class="sub">Багаар хамтран ажиллах</p><span class="badge wip">7 модуль, боловсруулж байна</span></div>
-        <p class="lede">Өөрийгөө таньсан хүн бусадтай үр дүнтэй ажиллаж эхэлнэ. Итгэлцэл, харилцаа, хамтын шийдвэр, хэлтэс хоорондын уялдаанд төвлөрнө.</p>
-      </div>
-      <div class="wip-box"><p>Энэ шатны модулиуд одоо боловсруулагдаж байна. Хөтөлбөр нээгдэхэд хамгийн түрүүнд мэдээлэл авахыг хүсвэл бүртгүүлнэ үү.</p><a class="btn ghost" href="#contact" data-interest="Team Collab">Мэдээлэл авах</a></div>
-    </div>
-
-    <div role="tabpanel" id="p-s3" aria-labelledby="t-s3" hidden>
-      <div class="stage-head">
-        <div><h3>Legacy of Leadership</h3><p class="sub">Манлайллын өв</p><span class="badge wip">7 модуль, боловсруулж байна</span></div>
-        <p class="lede">Удирдагчдад зориулсан шат. Байгууллагын соёл, стратеги, залгамж удирдагч бэлтгэх замаар манлайллыг тогтвортой өв болгоно.</p>
-      </div>
-      <div class="wip-box"><p>Энэ шатны модулиуд одоо боловсруулагдаж байна. Хөтөлбөр нээгдэхэд хамгийн түрүүнд мэдээлэл авахыг хүсвэл бүртгүүлнэ үү.</p><a class="btn ghost" href="#contact" data-interest="Legacy of Leadership">Мэдээлэл авах</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- INSIGHTS -->
-<section id="insights" class="tint">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Судалгаа, блог</h2>
-      <p class="lede">Манай зөвлөхүүдийн судалгаа, ажиглалт, бизнес удирдлагын талаарх бодол.</p>
-    </div>
-    <div class="seg" role="tablist" aria-label="Нийтлэлийн төрөл">
-      <button role="tab" aria-selected="true" data-type="insight">Судалгаа</button>
-      <button role="tab" aria-selected="false" data-type="blog" tabindex="-1">Блог</button>
-    </div>
-    <div class="filters" id="filters" aria-label="Менежментээр шүүх"></div>
-    <div class="posts" id="posts"></div>
-  </div>
-</section>
-
-<!-- CSR -->
-<section>
-  <div class="wrap csr">
-    <blockquote>Тогтвортой бизнес нийгэмдээ хөрөнгө оруулдаг.</blockquote>
+<section class="sec dark" id="challenge">
+  <div class="wrap wizard">
     <div>
-      <h3>«Мэдлэгтэй сонголт — Миний ирээдүй»</h3>
-      <p class="lede" style="margin-top:12px">ЕБС-ийн 14–18 насны сурагчдад зориулсан дээрэлхэлтээс урьдчилан сэргийлэх, эрх зүйн мэдлэг олгох нийгмийн хөтөлбөр.</p>
-      <ul>
-        <li>Хуульч, мэргэжилтнүүдийн хичээл, сургалт</li>
-        <li>Сургуулийн нийгмийн ажилтантай хамтарсан хэрэгжилт</li>
-        <li>Үр дүнгийн хэмжилт, тайлагнал</li>
-      </ul>
-      <a class="btn ghost" href="#contact" data-interest="Нийгмийн хөтөлбөр">Хөтөлбөрийг ивээн тэтгэх</a>
+      <p class="kicker">Гурван асуулт, нэг минут</p>
+      <h2>Сорилтоо хэлээрэй. Шийдлийг нь хамтдаа олъё.</h2>
+      <p class="lede" style="margin-top:20px">Танай бизнесийн өнөөгийн нөхцөл байдлыг товч хуваалцаарай. Манай зөвлөхүүд судалж, тантай холбогдоно.</p>
+      <ol class="progress" id="wzProgress">
+        <li class="cur"><span class="dot">1</span>Салбар</li>
+        <li><span class="dot">2</span>Гол сорилт</li>
+        <li><span class="dot">3</span>Холбоо барих</li>
+      </ol>
     </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="dark">
-  <div class="wrap contact">
-    <div>
-      <h2 style="color:#fff">Бизнесээ хамтдаа холбоё.</h2>
-      <p class="lede" style="margin-top:20px">30 минутын танилцах уулзалтаар таны нөхцөл байдлыг сонсож, хаанаас эхлэхийг хамтдаа тодорхойлно.</p>
-      <dl id="contactInfo"></dl>
-    </div>
-    <form id="form" novalidate>
-      <label>Нэр<input name="name" required autocomplete="name"></label>
-      <label>Байгууллага<input name="org" autocomplete="organization"></label>
-      <label>Утас эсвэл имэйл<input name="reach" required></label>
-      <label>Сонирхож буй чиглэл
-        <select name="interest" id="interest">
-          <option>5 менежментийн оношилгоо</option>
-          <option>Тусдаа зөвлөгөө</option>
-          <option>Цогц зөвлөгөө</option>
-          <option>Self Awareness</option>
-          <option>Team Collab</option>
-          <option>Legacy of Leadership</option>
-          <option>Нийгмийн хөтөлбөр</option>
-          <option>Бусад</option>
-        </select>
-      </label>
-      <label class="full">Мессеж<textarea name="msg" placeholder="Танай байгууллагад одоо тулгамдаж буй асуудал юу вэ?"></textarea></label>
-      <button class="btn" type="submit">Хүсэлт илгээх</button>
-      <p class="note" id="formNote" role="status"></p>
+    <form class="wz-panel" id="wizard" novalidate>
+      <div class="wz-step show" data-step="1">
+        <h3>Танай байгууллага ямар салбарт ажилладаг вэ?</h3>
+        <div class="choices" data-name="industry" data-single>
+          <button type="button" class="choice" aria-pressed="false">Худалдаа</button>
+          <button type="button" class="choice" aria-pressed="false">Үйлчилгээ</button>
+          <button type="button" class="choice" aria-pressed="false">Үйлдвэрлэл</button>
+          <button type="button" class="choice" aria-pressed="false">Барилга, үл хөдлөх</button>
+          <button type="button" class="choice" aria-pressed="false">Санхүү, даатгал</button>
+          <button type="button" class="choice" aria-pressed="false">Технологи</button>
+          <button type="button" class="choice" aria-pressed="false">Уул уурхай, эрчим хүч</button>
+          <button type="button" class="choice" aria-pressed="false">Хоол, зочид буудал</button>
+          <button type="button" class="choice" aria-pressed="false">Боловсрол</button>
+          <button type="button" class="choice" aria-pressed="false">Эрүүл мэнд</button>
+          <button type="button" class="choice" aria-pressed="false">Бусад</button>
+        </div>
+        <div class="wz-nav"><span></span><button type="button" class="btn" data-next disabled>Үргэлжлүүлэх</button></div>
+      </div>
+      <div class="wz-step" data-step="2">
+        <h3>Хамгийн том сорилт тань юу вэ?</h3>
+        <p class="hint">Нэг эсвэл хэд хэдийг сонгож болно.</p>
+        <div class="choices" data-name="challenge">
+          <button type="button" class="choice" aria-pressed="false">Борлуулалт буурсан</button>
+          <button type="button" class="choice" aria-pressed="false">Зөв хүн олох, тогтоон барих</button>
+          <button type="button" class="choice" aria-pressed="false">Маркетинг үр дүнгүй</button>
+          <button type="button" class="choice" aria-pressed="false">Ашиг, мөнгөн урсгал</button>
+          <button type="button" class="choice" aria-pressed="false">Үйлчилгээ, процесс стандартгүй</button>
+          <button type="button" class="choice" aria-pressed="false">Стратеги, чиглэл тодорхойгүй</button>
+          <button type="button" class="choice" aria-pressed="false">Багийн манлайлал сул</button>
+        </div>
+        <label class="field">Товч тайлбар (заавал биш)<textarea name="detail" rows="3" placeholder="Жишээ нь: сүүлийн хагас жилд борлуулалт буурсан ч шалтгааныг тодорхойлж чадахгүй байна."></textarea></label>
+        <div class="wz-nav"><button type="button" class="wz-back" data-back>Буцах</button><button type="button" class="btn" data-next disabled>Үргэлжлүүлэх</button></div>
+      </div>
+      <div class="wz-step" data-step="3">
+        <h3>Хэнтэй холбогдох вэ?</h3>
+        <div class="form-grid">
+          <label class="field full">Байгууллагын нэр<input name="company" required autocomplete="organization"></label>
+          <label class="field">Таны нэр<input name="name" required autocomplete="name"></label>
+          <label class="field">Утас эсвэл имэйл<input name="contact" required></label>
+        </div>
+        <label class="hp" aria-hidden="true">Үүнийг бүү бөглө<input name="_honey" tabindex="-1" autocomplete="off"></label>
+        <p class="status" id="wzStatus" role="status"></p>
+        <div class="wz-nav"><button type="button" class="wz-back" data-back>Буцах</button><button type="submit" class="btn">Илгээх</button></div>
+      </div>
+      <div class="wz-step wz-done" data-step="4">
+        <svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" fill="none" stroke="#7FC8AA" stroke-width="2"/><path d="M15 27l7 7 15-16" fill="none" stroke="#7FC8AA" stroke-width="2.4"/></svg>
+        <h3>Баярлалаа.</h3>
+        <p class="lede">Таны сорилтыг хүлээн авлаа. Манай зөвлөх судалж, удахгүй тантай холбогдоно.</p>
+        <div class="wz-nav"><span></span><button type="button" class="btn ghost" data-restart>Шинээр бөглөх</button></div>
+      </div>
     </form>
   </div>
 </section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="kicker">Судалгаа</p><h2>Манай зөвлөхүүдийн судалгаа</h2></div>
+      <a class="textlink more" href="insights.html">Бүх судалгаа</a>
+    </div>
+    <div id="homeInsights"><p class="loading">Ачаалж байна...</p></div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="kicker">Блог</p><h2>Бизнесийн тухай бодол, туршлага</h2></div>
+      <a class="textlink more" href="blog.html">Бүх блог</a>
+    </div>
+    <div class="blog-grid" id="homeBlog"><p class="loading">Ачаалж байна...</p></div>
+  </div>
+</section>
+
+<section class="sec" id="videoSec" hidden>
+  <div class="wrap two">
+    <div><p class="kicker">Танилцуулга</p><h2>Бид хэрхэн ажилладаг вэ</h2></div>
+    <div class="embed" id="introVideo"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="kicker">Таны бизнест юу тулгамдаж байна?</p><h2>Асуудал аль талд байна вэ?</h2></div>
+      <p class="lede">Ихэнх сорилт хоёр төрөл байдаг: зөв зүйлийг сонгох (стратеги), эсвэл сонгосноо тууштай хийх (хэрэгжилт). Өөрт тохирохыг сонгоорой.</p>
+    </div>
+    <div class="split">
+      <div class="side strat">
+        <span class="tag">Стратеги, сэтгэлгээ</span>
+        <h3>Юу хийхээ мэдэхгүй байна</h3>
+        <p>Чиглэл, байр суурь, тэргүүлэх зорилт тодорхойгүй.</p>
+        <ul class="issues">
+          <li><button data-ask="Стратеги: Өсөлтийн чиглэл тодорхойгүй">Өсөлтийн чиглэл тодорхойгүй<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Стратеги: Зорилтот хэрэглэгч, байр суурь">Зорилтот хэрэглэгч, байр суурь бүрхэг<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Стратеги: Хэлтсүүд уялдаагүй">Хэлтсүүд өөр өөр зүг рүү явж байна<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Стратеги: Бүтэц, засаглал">Бүтэц, шийдвэр гаргалт удаан<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+        </ul>
+      </div>
+      <div class="side exec">
+        <span class="tag">Хэрэгжилт, сахилга бат</span>
+        <h3>Мэдэж байгаа ч хийж чадахгүй байна</h3>
+        <p>Төлөвлөгөө бий ч өдөр тутмын ажилд хэрэгжихгүй байна.</p>
+        <ul class="issues">
+          <li><button data-ask="Хэрэгжилт: Төлөвлөгөө хэрэгждэггүй">Төлөвлөгөө цаасан дээр үлддэг<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Хэрэгжилт: Баг, ажилтны эргэц">Баг тогтворгүй, ажилтан солигддог<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Хэрэгжилт: Процесс, стандарт">Процесс, стандарт байхгүй<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+          <li><button data-ask="Хэрэгжилт: Борлуулалтын дагалт">Борлуулалтын дагалт, хяналт сул<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+<div data-footer></div>
 
-<footer>
-  <div class="wrap"><span>© <span id="yr"></span> «Шийдэл» Тогтвортой Хөгжлийн Гүүр ТББ</span><span>Sol'N</span></div>
-</footer>
-
-<dialog id="reader" aria-labelledby="rTitle">
-  <div class="reader" id="readerBody"></div>
-  <button class="close" id="rClose" aria-label="Хаах"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.6"/></svg></button>
-</dialog>
-
-<script src="content.js"></script>
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
 <script>
 (function(){
-const AREAS = [
-  {id:"hr", name:"Хүний нөөц", short:"Хүний нөөц",
-   role:"Зөв хүнийг зөв байранд, зөв чадвартайгаар ажиллуулах.",
-   symptoms:["Ажилтны эргэц өндөр","Шинэ менежер багаа удирдаж чадахгүй","Үүрэг хариуцлага тодорхойгүй"],
-   doing:["Бүтэц, албан тушаалын тодорхойлолт","Гүйцэтгэлийн удирдлагын систем","Манлайлал, сургалтын хөтөлбөр"],
-   links:{mkt:"Брэндийн амлалтыг эцэст нь ажилтан биелүүлдэг.",sales:"Сургалтгүй борлуулагч бэлэн хэрэглэгчийг ч алддаг.",fin:"Цалин, урамшууллын бүтэц ашигт шууд нөлөөлдөг.",ops:"Үйлчилгээний чанар ажилтны чадвар, сэдлээс эхэлдэг."}},
-  {id:"mkt", name:"Маркетинг", short:"Маркетинг",
-   role:"Зөв хэрэглэгчид зөв мессежээр хүрэх.",
-   symptoms:["Зар сурталчилгааны зардал өндөр ч үр дүн бага","Брэндийн мессеж тогтворгүй","Зорилтот хэрэглэгч тодорхойгүй"],
-   doing:["Байр суурь, зорилтот хэрэглэгчийг тодорхойлох","Брэндийн стратеги, мессеж","Маркетингийн төлөвлөгөө, хэмжүүр"],
-   links:{hr:"Хүчтэй брэнд шилдэг ажилтныг татдаг.",sales:"Буруу хэрэглэгчийг татвал борлуулалт хүндэрнэ.",fin:"Маркетингийн зардал бүр өгөөжөө тоогоор харуулах ёстой.",ops:"Үйлчилгээ даахгүй амлалт гомдол болж эргэнэ."}},
-  {id:"sales", name:"Борлуулалт", short:"Борлуулалт",
-   role:"Сонирхлыг тогтвортой орлого болгох.",
-   symptoms:["Сонирхсон хүн олон ч худалдан авалт цөөн","Борлуулалт цөөн хүнээс хамааралтай","Дахин худалдан авалт бага"],
-   doing:["Борлуулалтын процесс, шат дамжлага","Харилцагчийн бүртгэл, дагалт","Борлуулалтын баг, урамшууллын загвар"],
-   links:{hr:"Борлуулалтын зорилт багийн чадавхтай нийцэх ёстой.",mkt:"Хэрэглэгчийн татгалзсан шалтгаан мессежийг сайжруулна.",fin:"Хямдрал, төлбөрийн нөхцөл ашгийг тодорхойлдог.",ops:"Биелүүлж чадахгүй хугацаа амлах нь итгэлийг алддаг."}},
-  {id:"fin", name:"Санхүү", short:"Санхүү",
-   role:"Орлого, зардлыг хянаж, ашгийг тогтвортой өсгөх.",
-   symptoms:["Орлого өссөн ч ашиг өсөхгүй","Мөнгөн урсгалын дутагдал","Үнийн бодлого тодорхойгүй"],
-   doing:["Зардал, ашигт ажиллагааны шинжилгээ","Үнийн бодлого","Төсөв, санхүүгийн хяналтын тайлан"],
-   links:{hr:"Төсөвгүй хүний нөөцийн төлөвлөгөө хэрэгждэггүй.",mkt:"Хэрэглэгч олж авах өртгийг мэдэхгүй бол маркетинг таамаглал болно.",sales:"Ашигтай, ашиггүй хэрэглэгчийг ялгаж харах хэрэгтэй.",ops:"Үр ашиггүй процесс нуугдмал зардал үүсгэдэг."}},
-  {id:"ops", name:"Үйл ажиллагаа, үйлчилгээ", short:"Үйл|ажиллагаа",
-   role:"Амласан үнэ цэнийг хэрэглэгчид тогтвортой хүргэх.",
-   symptoms:["Гомдол давтагддаг","Ажил стандартгүй, хүнээс хамааралтай","Гүйцэтгэл, хүргэлт удаан"],
-   doing:["Үйл явцын зураглал, стандарт","Үйлчилгээний стандарт, хэмжүүр","Үр ашгийг сайжруулах"],
-   links:{hr:"Тодорхой стандарт шинэ ажилтныг хурдан сургадаг.",mkt:"Сэтгэл ханамжтай хэрэглэгч бол хамгийн хямд маркетинг.",sales:"Сайн үйлчилгээ дахин худалдан авалтыг бий болгодог.",fin:"Алдаа, давталт бүр зардал болдог."}}
-];
-const byId = Object.fromEntries(AREAS.map(a=>[a.id,a]));
+  /* hero diagram: lines grow toward each other, then highlight rotates */
+  Site.bridge(document.getElementById("heroBridge"), {playNow:true, onDone(api){
+    if(Site.reduced){ api.highlight("hr"); return; }
+    const ids=AREAS.map(a=>a.id); let k=0; api.highlight(ids[0]);
+    setInterval(()=>{k=(k+1)%5; api.highlight(ids[k]);}, 2600);
+  }});
 
-const MODULES = [
-  {t:"VibeUP", cat:"Хувь хүний хөгжил", topics:["Self Growth","Self Improvement","Personal Growth"], who:"Н.Баясмаа", role:"ХНМ-ийн зөвлөх"},
-  {t:"Why not?", cat:"Хувь хүний брендинг", topics:["Past Perfect Tense","Present Perfect Tense","Future Perfect Tense"], who:"Б.Цогтсайхан", role:"Маркетингийн зөвлөх"},
-  {t:"Vibe check", cat:"Нийгмийн харилцаа, динамик", topics:["Communication","Bullying","Social Life"], who:"Г.Баттүшиг", role:"Хуульч, өмгөөлөгч"},
-  {t:"Unlock", cat:"Манлайлал", topics:["Basic Leadership","Leading Skills","Leadership Development"], who:"Б.Лхагвадулам", role:"ХНМ-ийн мэргэжилтэн"},
-  {t:"Think like Lawyer", cat:"Хууль, эрх зүй", topics:["Иргэний эрх үүрэг, хариуцлага","Зөрчил, гэмт хэргийн үндсэн ойлголт","Гэмт хэргээс урьдчилан сэргийлэх нь"], who:"Г.Баттүшиг", role:"Хуульч, өмгөөлөгч"},
-  {t:"Save mode", cat:"Эрүүл мэнд", topics:["Basic Health","CPR, анхан шатны тусламж","Save Mode"], who:"Г.Лхагвадорж", role:"Гэмтэл, согог судлалын эмч"},
-  {t:"Soul GPS", cat:"Хувь хүний хөгжил", topics:["Self Awareness","Career Exploration","Decision Making Plan"], who:"Б.Хонгорзул", role:"Маркетинг, борлуулалтын мэргэжилтэн"}
-];
-
-const esc = s => String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-
-/* ---------- bridge diagram ---------- */
-function pts(){
-  const cx=250, cy=250, r=180;
-  return AREAS.map((a,i)=>{const ang=-Math.PI/2 + i*2*Math.PI/5; return {id:a.id, x:cx+r*Math.cos(ang), y:cy+r*Math.sin(ang)};});
-}
-function label(t,x,y){const L=t.split("|"); if(L.length===1) return `<text x="${x}" y="${y+5}">${esc(t)}</text>`; return `<text x="${x}" y="${y-5}">${esc(L[0])}</text><text x="${x}" y="${y+14}">${esc(L[1])}</text>`;}
-function bridgeSVG(interactive){
-  const P = pts(); let edges="", nodes="";
-  for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){
-    const a=P[i], b=P[j], mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
-    const qx = mx + (250-mx)*0.28, qy = my + (250-my)*0.28;
-    edges += `<path class="edge" data-a="${a.id}" data-b="${b.id}" d="M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${qx.toFixed(1)} ${qy.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}" style="animation-delay:${(i+j)*0.08}s"/>`;
-  }
-  P.forEach(p=>{
-    const a=byId[p.id];
-    const attrs = interactive ? `tabindex="0" role="button" aria-label="${esc(a.name)}"` : "";
-    nodes += `<g class="node" data-id="${p.id}" ${attrs}><circle cx="${p.x}" cy="${p.y}" r="56"/>${label(a.short,p.x,p.y)}</g>`;
+  /* insights + blog */
+  Site.listPosts("insight",4).then(list=>{
+    const el=document.getElementById("homeInsights");
+    if(!list.length){ el.innerHTML='<p class="empty">Судалгаа удахгүй нийтлэгдэнэ.</p>'; return; }
+    el.innerHTML = Site.insightFeature(list[0]) + (list.length>1?`<div class="ins-list">${list.slice(1).map(Site.insightRow).join("")}</div>`:"");
   });
-  return `<svg viewBox="0 0 500 500">${edges}<rect class="core-bg" x="168" y="234" width="164" height="32" rx="4"/><text class="core" x="250" y="256">Тогтвортой бизнес</text>${nodes}</svg>`;
-}
-document.getElementById("heroBridge").innerHTML = bridgeSVG(false);
-const ex = document.getElementById("explorerBridge");
-ex.innerHTML = bridgeSVG(true);
-
-function highlight(root, id){
-  root.querySelectorAll(".edge").forEach(e=>{
-    const on = e.dataset.a===id || e.dataset.b===id;
-    e.classList.toggle("on", on); e.classList.toggle("off", !on);
+  Site.listPosts("blog",3).then(list=>{
+    const el=document.getElementById("homeBlog");
+    el.innerHTML = list.length ? list.map(Site.blogCard).join("") : '<p class="empty">Блог удахгүй нийтлэгдэнэ.</p>';
   });
-  root.querySelectorAll(".node").forEach(n=>{
-    const act = n.dataset.id===id;
-    n.classList.toggle("active", act);
-    if(n.hasAttribute("role")) n.setAttribute("aria-pressed", act);
-  });
-}
-function renderPanel(id){
-  const a = byId[id];
-  const links = Object.entries(a.links).map(([k,v])=>`<li><b>${esc(byId[k].name)}</b><span>${esc(v)}</span></li>`).join("");
-  const panel = document.getElementById("panel");
-  panel.innerHTML = `<div class="panel-fade">
-    <h3 class="area-name">${esc(a.name)}</h3><p class="role">${esc(a.role)}</p>
-    <div class="cols">
-      <div><h4>Түгээмэл шинж тэмдэг</h4><ul>${a.symptoms.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>
-      <div><h4>Бидний хийдэг зүйл</h4><ul>${a.doing.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>
-    </div>
-    <div class="links"><h4>Бусад менежменттэй холбоо</h4><ul>${links}</ul></div></div>`;
-}
-function selectArea(id){ highlight(ex,id); renderPanel(id); }
-ex.addEventListener("click", e=>{const n=e.target.closest(".node"); if(n) selectArea(n.dataset.id);});
-ex.addEventListener("keydown", e=>{const n=e.target.closest(".node"); if(n && (e.key==="Enter"||e.key===" ")){e.preventDefault(); selectArea(n.dataset.id);}});
-selectArea("hr");
 
-/* hero: slow rotation of highlighted node after draw */
-const hero = document.getElementById("heroBridge");
-if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-  let k=0; setTimeout(()=>{ highlight(hero, AREAS[0].id); setInterval(()=>{k=(k+1)%5; highlight(hero, AREAS[k].id);}, 2600); }, 2200);
-}
+  /* optional intro video */
+  const vid = Site.ytId((window.SITE_CONFIG||{}).introVideo);
+  if(vid){ document.getElementById("videoSec").hidden=false; document.getElementById("introVideo").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${vid}" title="Танилцуулга видео" allowfullscreen loading="lazy"></iframe>`; }
 
-/* ---------- consulting list ---------- */
-document.getElementById("svcList").innerHTML = AREAS.map(a=>`
-  <div class="svc"><h3>${esc(a.name)}</h3><p>${esc(a.role)}</p><ul>${a.doing.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`).join("");
-
-/* ---------- modules ---------- */
-const chev = `<svg class="chev" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 4v14M4 11h14" stroke="currentColor" stroke-width="1.6"/></svg>`;
-document.getElementById("modules").innerHTML = MODULES.map((m,i)=>`
-  <div class="mod">
-    <button class="mod-btn" aria-expanded="false" aria-controls="mod-${i}">
-      <span class="num">${i+1}</span><span class="t">${esc(m.t)}</span><span class="cat">${esc(m.cat)}</span>${chev}
-    </button>
-    <div class="mod-body" id="mod-${i}"><div><div class="mod-inner">
-      <ul>${m.topics.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-      <p class="trainer"><b>${esc(m.who)}</b><span>${esc(m.role)}</span></p>
-    </div></div></div>
-  </div>`).join("");
-document.getElementById("modules").addEventListener("click", e=>{
-  const b = e.target.closest(".mod-btn"); if(!b) return;
-  const open = b.getAttribute("aria-expanded")==="true";
-  b.setAttribute("aria-expanded", !open); b.parentElement.classList.toggle("open", !open);
-});
-
-/* ---------- generic tabs ---------- */
-document.querySelectorAll('.seg[role="tablist"]').forEach(list=>{
-  const tabs = [...list.querySelectorAll('[role="tab"]')];
-  const activate = t=>{
-    tabs.forEach(x=>{const on=x===t; x.setAttribute("aria-selected",on); x.tabIndex=on?0:-1;
-      const p=x.getAttribute("aria-controls"); if(p) document.getElementById(p).hidden=!on;});
-    if(t.dataset.type){ state.type=t.dataset.type; renderPosts(); }
+  /* 3-step challenge form */
+  const form=document.getElementById("wizard"), steps=[...form.querySelectorAll(".wz-step")], prog=[...document.querySelectorAll("#wzProgress li")];
+  const picks={industry:[],challenge:[]};
+  const go=n=>{
+    steps.forEach(s=>s.classList.toggle("show", +s.dataset.step===n));
+    prog.forEach((li,i)=>{ li.classList.toggle("cur", i+1===n); li.classList.toggle("done", i+1<n); });
+    const first=steps[n-1].querySelector("button.choice, input, .btn"); if(first && n>1) first.focus({preventScroll:true});
   };
-  tabs.forEach((t,i)=>{
-    t.addEventListener("click",()=>activate(t));
-    t.addEventListener("keydown",e=>{
-      if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft") return;
-      const n=tabs[(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length]; n.focus(); activate(n);
+  form.querySelectorAll(".choices").forEach(group=>{
+    const name=group.dataset.name, single=group.hasAttribute("data-single");
+    group.addEventListener("click",e=>{
+      const b=e.target.closest(".choice"); if(!b) return;
+      if(single) group.querySelectorAll(".choice").forEach(x=>x.setAttribute("aria-pressed", x===b));
+      else b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")!=="true");
+      picks[name]=[...group.querySelectorAll('.choice[aria-pressed="true"]')].map(x=>x.textContent);
+      group.closest(".wz-step").querySelector("[data-next]").disabled = !picks[name].length;
     });
   });
-});
-
-/* ---------- insights & blog ---------- */
-const POSTS = (window.SOLN_POSTS||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
-const state = {type:"insight", area:"all"};
-const areaName = id => id==="all" ? "Ерөнхий" : (byId[id]?byId[id].name:"");
-const fmtDate = d => { const [y,m,dd]=d.split("-"); return `${y} оны ${parseInt(m)}-р сарын ${parseInt(dd)}`; };
-const filters = document.getElementById("filters");
-filters.innerHTML = [{id:"all",name:"Бүгд"},...AREAS].map(a=>`<button class="chip" data-area="${a.id}" aria-pressed="${a.id==="all"}">${esc(a.name)}</button>`).join("");
-filters.addEventListener("click", e=>{
-  const c=e.target.closest(".chip"); if(!c) return;
-  state.area=c.dataset.area;
-  filters.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed", x===c));
-  renderPosts();
-});
-function renderPosts(){
-  const list = POSTS.filter(p=>p.type===state.type && (state.area==="all"||p.area===state.area));
-  const el = document.getElementById("posts");
-  if(!list.length){ el.innerHTML = `<p class="empty">Энэ ангилалд одоогоор нийтлэл алга. Өөр менежмент сонгож үзнэ үү.</p>`; return; }
-  el.innerHTML = list.map(p=>`
-    <button class="post" data-id="${esc(p.id)}">
-      <span class="meta">${esc(areaName(p.area))}</span>
-      <h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p>
-      <span class="by">${esc(p.author)}, ${fmtDate(p.date)}, ${p.readMin} мин</span>
-    </button>`).join("");
-}
-renderPosts();
-const dlg = document.getElementById("reader");
-function openPost(id){
-  const p = POSTS.find(x=>x.id===id); if(!p) return;
-  const body = p.body.map(l=> l.startsWith("## ") ? `<h3>${esc(l.slice(3))}</h3>` : `<p>${esc(l)}</p>`).join("");
-  document.getElementById("readerBody").innerHTML = `<p class="meta">${esc(areaName(p.area))}</p><h2 id="rTitle">${esc(p.title)}</h2><p class="by">${esc(p.author)}, ${fmtDate(p.date)}, ${p.readMin} мин унших</p><div class="body">${body}</div>`;
-  if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
-  history.replaceState(null,"","#post-"+id);
-}
-document.getElementById("posts").addEventListener("click", e=>{const b=e.target.closest(".post"); if(b) openPost(b.dataset.id);});
-document.getElementById("rClose").addEventListener("click", ()=>dlg.close());
-dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
-dlg.addEventListener("close", ()=>{ if(location.hash.startsWith("#post-")) history.replaceState(null,"","#insights"); });
-if(location.hash.startsWith("#post-")){ const id=location.hash.slice(6); const p=POSTS.find(x=>x.id===id); if(p){ document.querySelector(`[data-type="${p.type}"]`).click(); openPost(id);} }
-
-/* ---------- contact ---------- */
-const C = window.SOLN_CONFIG||{};
-document.getElementById("contactInfo").innerHTML =
-  (C.phone?`<dt>Утас</dt><dd><a href="tel:${esc(C.phone.replace(/\s/g,""))}" style="text-decoration:none">${esc(C.phone)}</a></dd>`:"")+
-  (C.email?`<dt>Имэйл</dt><dd><a href="mailto:${esc(C.email)}" style="text-decoration:none">${esc(C.email)}</a></dd>`:"")+
-  (C.address?`<dt>Хаяг</dt><dd>${esc(C.address)}</dd>`:"");
-document.querySelectorAll("[data-interest]").forEach(a=>a.addEventListener("click",()=>{document.getElementById("interest").value=a.dataset.interest;}));
-document.getElementById("form").addEventListener("submit", e=>{
-  e.preventDefault();
-  const f=e.target, note=document.getElementById("formNote");
-  if(!f.name.value.trim()||!f.reach.value.trim()){ note.textContent="Нэр болон утас эсвэл имэйлээ оруулна уу."; return; }
-  if(!C.email){ note.textContent = `Одоогоор цахим хүсэлт хүлээн авах тохиргоо хийгдээгүй байна. ${C.phone||""} утсаар холбогдоно уу.`; return; }
-  const body = `Нэр: ${f.name.value}\nБайгууллага: ${f.org.value}\nХолбоо барих: ${f.reach.value}\nЧиглэл: ${f.interest.value}\n\n${f.msg.value}`;
-  location.href = `mailto:${C.email}?subject=${encodeURIComponent("Вэб сайтаас хүсэлт: "+f.interest.value)}&body=${encodeURIComponent(body)}`;
-  note.textContent = "Имэйл програм нээгдлээ. Илгээх товчийг дарж хүсэлтээ илгээнэ үү.";
-});
-
-/* ---------- header ---------- */
-const hdr=document.querySelector("header"), nav=document.getElementById("nav"), mb=document.querySelector(".menu-btn");
-addEventListener("scroll",()=>hdr.classList.toggle("scrolled", scrollY>8),{passive:true});
-mb.addEventListener("click",()=>{const o=nav.classList.toggle("open"); mb.setAttribute("aria-expanded",o);});
-nav.addEventListener("click",e=>{ if(e.target.closest("a")){nav.classList.remove("open"); mb.setAttribute("aria-expanded",false);} });
-document.getElementById("yr").textContent = new Date().getFullYear();
+  form.addEventListener("click",e=>{
+    const cur=+form.querySelector(".wz-step.show").dataset.step;
+    if(e.target.closest("[data-next]")) go(cur+1);
+    if(e.target.closest("[data-back]")) go(cur-1);
+    if(e.target.closest("[data-restart]")){ form.reset(); form.querySelectorAll(".choice").forEach(x=>x.setAttribute("aria-pressed","false")); form.querySelectorAll("[data-next]").forEach(b=>b.disabled=true); picks.industry=[]; picks.challenge=[]; go(1); }
+  });
+  form.addEventListener("submit", async e=>{
+    e.preventDefault();
+    const st=document.getElementById("wzStatus"); st.className="status";
+    if(form._honey.value) return;
+    if(!form.company.value.trim()||!form.name.value.trim()||!form.contact.value.trim()){ st.textContent="Бүх талбарыг бөглөнө үү."; st.classList.add("err"); return; }
+    const btn=form.querySelector("button[type=submit]"); btn.disabled=true; st.textContent="Илгээж байна...";
+    const ok = await Site.send("Шинэ сорилт: "+form.company.value, {
+      "Байгууллага":form.company.value, "Салбар":picks.industry.join(", "), "Гол сорилт":picks.challenge.join(", "),
+      "Тайлбар":form.detail.value, "Нэр":form.name.value, "Холбоо барих":form.contact.value
+    });
+    btn.disabled=false;
+    if(ok){ st.textContent=""; go(4); }
+    else { st.textContent=`Илгээхэд алдаа гарлаа. ${SITE_CONFIG.phone} утсаар холбогдоно уу.`; st.classList.add("err"); }
+  });
 })();
 </script>
 </body>

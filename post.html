@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Нийтлэл | Шийдэл</title>
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="">
+<div data-header></div>
+<main id="post"><div class="wrap"><p class="loading" style="padding:96px 0">Ачаалж байна...</p></div></main>
+<section class="sec tint">
+  <div class="wrap band">
+    <h2>Энэ сэдэв танай бизнест хамаатай юу?</h2>
+    <button class="btn" id="askBtn" data-ask="Нийтлэлийн сэдвээр зөвлөгөө">Зөвлөхтэй ярилцах</button>
+  </div>
+</section>
+<div data-footer></div>
+
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async function(){
+  const esc=Site.esc, id=new URLSearchParams(location.search).get("id");
+  const el=document.getElementById("post");
+  const p = id ? await Site.getPost(id) : null;
+  if(!p){ el.innerHTML=`<div class="wrap" style="padding:96px 24px"><h1 style="font-size:40px">Нийтлэл олдсонгүй.</h1><p class="lede" style="margin-top:16px">Холбоос буруу эсвэл нийтлэл устгагдсан байж болно.</p><p style="margin-top:24px"><a class="textlink" href="blog.html">Блог руу буцах</a></p></div>`; return; }
+  const isIns = p.type==="insight";
+  document.body.dataset.page = isIns?"insights":"blog";
+  document.querySelector(`.site-nav a[href="${isIns?"insights.html":"blog.html"}"]`)?.setAttribute("aria-current","page");
+  document.title = p.title+" | Шийдэл";
+  document.getElementById("askBtn").dataset.ask = "Нийтлэл: "+p.title;
+  el.innerHTML = `
+    <header class="post-head ${isIns?"insight":""}"><div class="wrap">
+      <a class="back" href="${isIns?"insights.html":"blog.html"}">← ${isIns?"Бүх судалгаа":"Бүх блог"}</a>
+      <p class="meta">${isIns?"Судалгаа":"Блог"}, ${esc(Site.areaName(p.area))}</p>
+      <h1>${esc(p.title)}</h1>
+      ${p.summary?`<p class="sum">${esc(p.summary)}</p>`:""}
+      <p class="by">${esc(p.author||"Шийдэл баг")}, ${Site.date(p.created_at)}, ${Site.readMin(p)} мин унших</p>
+    </div></header>
+    ${p.cover_url && !isIns ? `<div class="post-cover">${Site.cover(p)}</div>` : ""}
+    ${p.cover_url && isIns ? `<div class="post-cover" style="margin-top:-32px">${Site.cover(p)}</div>` : ""}
+    <article class="post-body">${Site.renderBlocks(p.blocks)}</article>`;
+})();
+</script>
+</body>
+</html>

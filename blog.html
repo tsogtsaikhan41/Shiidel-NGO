@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Блог | Шийдэл</title>
+<meta name="description" content="Бизнесийн сэтгэлгээ, сахилга бат, удирдлагын тухай манай багийн бодол, туршлага.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="blog">
+<div data-header></div>
+<main>
+
+<section class="page-hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Блог</p>
+      <h1>Бизнесийн тухай бодол, туршлага.</h1>
+      <p class="lede">Сэтгэлгээ, сахилга бат, өдөр тутмын удирдлагын тухай манай багийн богино, практик нийтлэлүүд.</p>
+    </div>
+    <div data-hero-art="blog"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="filters" id="filters" aria-label="Менежментээр шүүх"></div>
+    <div class="blog-grid" id="list"><p class="loading">Ачаалж байна...</p></div>
+  </div>
+</section>
+
+</main>
+<div data-footer></div>
+
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async function(){
+  const all = await Site.listPosts("blog");
+  let area = "all";
+  const f=document.getElementById("filters");
+  f.innerHTML=[{id:"all",name:"Бүгд"},...AREAS].map(a=>`<button class="chip" data-area="${a.id}" aria-pressed="${a.id==="all"}">${Site.esc(a.name)}</button>`).join("");
+  f.addEventListener("click",e=>{const c=e.target.closest(".chip"); if(!c) return; area=c.dataset.area; f.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c)); render();});
+  function render(){
+    const list = all.filter(p=>area==="all"||p.area===area);
+    document.getElementById("list").innerHTML = list.length ? list.map(Site.blogCard).join("") : '<p class="empty">Энэ чиглэлээр одоогоор блог нийтлэгдээгүй байна.</p>';
+  }
+  render();
+})();
+</script>
+</body>
+</html>

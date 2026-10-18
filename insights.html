@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Судалгаа | Шийдэл</title>
+<meta name="description" content="Манай зөвлөхүүдийн бизнесийн менежментийн судалгаа, дүн шинжилгээ.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="insights">
+<div data-header></div>
+<main>
+
+<section class="page-hero dark">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Судалгаа</p>
+      <h1>Ажиглалт, дата, дүгнэлт.</h1>
+      <p class="lede">Манай зөвлөхүүд Монголын бизнесүүдтэй ажиллах явцдаа олж мэдсэн зүйлсээ таван менежментийн хүрээнд судалж, хуваалцдаг.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="filters" id="filters" aria-label="Менежментээр шүүх"></div>
+    <div id="list"><p class="loading">Ачаалж байна...</p></div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap band">
+    <h2>Танай бизнест тохирсон дүн шинжилгээ хэрэгтэй юу?</h2>
+    <button class="btn" data-ask="Судалгаа, дүн шинжилгээ">Судалгаа захиалах</button>
+  </div>
+</section>
+
+</main>
+<div data-footer></div>
+
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async function(){
+  const all = await Site.listPosts("insight");
+  let area = "all";
+  const f=document.getElementById("filters");
+  f.innerHTML=[{id:"all",name:"Бүгд"},...AREAS].map(a=>`<button class="chip" data-area="${a.id}" aria-pressed="${a.id==="all"}">${Site.esc(a.name)}</button>`).join("");
+  f.addEventListener("click",e=>{const c=e.target.closest(".chip"); if(!c) return; area=c.dataset.area; f.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c)); render();});
+  function render(){
+    const list = all.filter(p=>area==="all"||p.area===area);
+    const el=document.getElementById("list");
+    if(!list.length){ el.innerHTML='<p class="empty">Энэ чиглэлээр одоогоор судалгаа нийтлэгдээгүй байна. Өөр менежмент сонгож үзнэ үү.</p>'; return; }
+    el.innerHTML = Site.insightFeature(list[0]) + (list.length>1?`<div class="ins-list">${list.slice(1).map(Site.insightRow).join("")}</div>`:"");
+  }
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Манлайллын академи | Шийдэл</title>
+<meta name="description" content="Байгууллагын ажилтнуудад зориулсан гурван шатлалт, шат бүр долоон модультай манлайллын хөтөлбөр.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="academy">
+<div data-header></div>
+<main>
+
+<section class="page-hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Манлайллын академи</p>
+      <h1>Манлайлал өөрийгөө ойлгохоос эхэлдэг.</h1>
+      <p class="lede">Байгууллагын ажилтнуудад зориулсан гурван шатлалт хөтөлбөр. Хувь хүнээс эхэлж, баг, байгууллагын манлайлал руу шилжинэ. Шат бүр долоон модультай.</p>
+      <div class="ctas"><button class="btn" data-ask="Манлайллын академи: байгууллагадаа зохион байгуулах">Байгууллагадаа зохион байгуулах</button><a class="btn ghost" href="#program">Хөтөлбөр үзэх</a></div>
+    </div>
+    <div data-hero-art="academy"></div>
+  </div>
+</section>
+
+<section class="sec" id="program">
+  <div class="wrap">
+    <div class="path">
+      <div><p class="n">1-р шат</p><h3>Self Awareness</h3><p>Өөрийгөө таних. Хувь хүний хөгжил, брендинг, харилцаа, карьерын шийдвэр.</p></div>
+      <div><p class="n">2-р шат</p><h3>Team Collab</h3><p>Багаар хамтран ажиллах. Итгэлцэл, хамтын шийдвэр, хэлтэс хоорондын уялдаа.</p></div>
+      <div><p class="n">3-р шат</p><h3>Legacy of Leadership</h3><p>Манлайллын өв. Байгууллагын соёл, стратеги, залгамж удирдагч бэлтгэх.</p></div>
+    </div>
+
+    <div class="seg" role="tablist" aria-label="Хөтөлбөрийн шат">
+      <button role="tab" id="t-s1" aria-selected="true" aria-controls="p-s1">1. Self Awareness</button>
+      <button role="tab" id="t-s2" aria-selected="false" aria-controls="p-s2" tabindex="-1">2. Team Collab</button>
+      <button role="tab" id="t-s3" aria-selected="false" aria-controls="p-s3" tabindex="-1">3. Legacy of Leadership</button>
+    </div>
+
+    <div role="tabpanel" id="p-s1" aria-labelledby="t-s1">
+      <div class="stage-head">
+        <div><h3>Self Awareness</h3><p class="sub">Өөрийгөө таних</p><span class="badge">7 модуль, бүртгэл нээлттэй</span></div>
+        <p class="lede">Хувь хүний хөгжил, брендинг, харилцаа, эрх зүй, эрүүл мэнд, карьерын шийдвэрийг хамарсан долоон модуль. Модуль бүрийг тусад нь эсвэл бүтэн шатаар нь захиалж болно.</p>
+      </div>
+      <div class="modules" id="modules"></div>
+      <div class="stage-cta"><p>Долоон модулийг бүтнээр нь байгууллагадаа зохион байгуулах уу?</p><button class="btn" data-ask="Self Awareness: бүтэн шат">Бүтэн шатны үнийн санал авах</button></div>
+    </div>
+
+    <div role="tabpanel" id="p-s2" aria-labelledby="t-s2" hidden>
+      <div class="stage-head">
+        <div><h3>Team Collab</h3><p class="sub">Багаар хамтран ажиллах</p><span class="badge wip">7 модуль, боловсруулж байна</span></div>
+        <p class="lede">Өөрийгөө таньсан хүн бусадтай үр дүнтэй ажиллаж эхэлнэ. Итгэлцэл, харилцаа, хамтын шийдвэр, хэлтэс хоорондын уялдаанд төвлөрнө.</p>
+      </div>
+      <div class="wip-box"><p>Энэ шатны модулиуд одоо боловсруулагдаж байна. Хөтөлбөр нээгдэхэд хамгийн түрүүнд мэдээлэл авахыг хүсвэл хүсэлтээ үлдээгээрэй.</p><button class="btn" data-ask="Team Collab: мэдээлэл авах">Мэдээлэл авах</button></div>
+    </div>
+
+    <div role="tabpanel" id="p-s3" aria-labelledby="t-s3" hidden>
+      <div class="stage-head">
+        <div><h3>Legacy of Leadership</h3><p class="sub">Манлайллын өв</p><span class="badge wip">7 модуль, боловсруулж байна</span></div>
+        <p class="lede">Удирдагчдад зориулсан шат. Байгууллагын соёл, стратеги, залгамж удирдагч бэлтгэх замаар манлайллыг тогтвортой өв болгоно.</p>
+      </div>
+      <div class="wip-box"><p>Энэ шатны модулиуд одоо боловсруулагдаж байна. Хөтөлбөр нээгдэхэд хамгийн түрүүнд мэдээлэл авахыг хүсвэл хүсэлтээ үлдээгээрэй.</p><button class="btn" data-ask="Legacy of Leadership: мэдээлэл авах">Мэдээлэл авах</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap band">
+    <h2>Танай байгууллагын хэрэгцээнд тохируулан хөтөлбөрөө хамтдаа бүрдүүлье.</h2>
+    <button class="btn" data-ask="Манлайллын академи: тусгай хөтөлбөр">Хүсэлт илгээх</button>
+  </div>
+</section>
+
+</main>
+<div data-footer></div>
+
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  const esc=Site.esc;
+  const chev=`<svg class="chev" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 4v14M4 11h14" stroke="currentColor" stroke-width="1.6"/></svg>`;
+  const el=document.getElementById("modules");
+  el.innerHTML = MODULES.map((m,i)=>`
+    <div class="mod">
+      <button class="mod-btn" aria-expanded="false" aria-controls="mod-${i}"><span class="num">${i+1}</span><span class="t">${esc(m.t)}</span><span class="cat">${esc(m.cat)}</span>${chev}</button>
+      <div class="mod-body" id="mod-${i}"><div><div class="mod-inner">
+        <ul>${m.topics.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        <div class="trainer"><b>${esc(m.who)}</b><span>${esc(m.role)}</span><button class="btn small" data-ask="Сургалт: ${esc(m.t)}">Мэдээлэл авах</button></div>
+      </div></div></div>
+    </div>`).join("");
+  el.addEventListener("click",e=>{
+    const b=e.target.closest(".mod-btn"); if(!b) return;
+    const open=b.getAttribute("aria-expanded")==="true";
+    b.setAttribute("aria-expanded",!open); b.parentElement.classList.toggle("open",!open);
+  });
+  Site.tabs();
+})();
+</script>
+</body>
+</html>

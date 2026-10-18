@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Админ | Шийдэл</title>
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{background:var(--mist)}
+.adm-bar{background:var(--ink);color:#fff}
+.adm-bar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.adm-bar .brand b,.adm-bar .brand span{color:#fff}
+.adm-bar .brand span{color:var(--on-dark-soft)}
+.adm-bar button{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:7px 16px;font-size:14px}
+.adm{max-width:860px;margin:0 auto;padding:56px 24px 96px}
+.card{background:#fff;border-radius:8px;padding:40px;border:1px solid var(--line)}
+.adm h1{font-size:38px;margin-bottom:10px}
+.adm .lede{font-size:17px}
+.login{max-width:440px;margin:40px auto}
+.login form{display:grid;gap:16px;margin-top:28px}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0 56px}
+.choose button{text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+.choose button:hover{border-color:var(--ink);transform:translateY(-2px)}
+.choose b{font-family:var(--serif);font-weight:500;font-size:28px}
+.choose span{color:var(--ink-soft);font-size:15px}
+.choose svg{width:40px;height:40px;margin-bottom:6px}
+.mine h2{font-size:24px;margin-bottom:16px}
+.mine ul{list-style:none;margin:0;padding:0;background:#fff;border:1px solid var(--line);border-radius:8px}
+.mine li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;border-top:1px solid var(--line)}
+.mine li:first-child{border-top:0}
+.mine li a{text-decoration:none;font-weight:500}
+.mine .t{font-size:13px;color:var(--ink-faint);display:block;font-weight:400}
+.mine .del{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:#A6413A}
+.mine .del:hover{border-color:#A6413A}
+.ed{display:grid;gap:20px}
+.ed .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ed .field input[type=file]{padding:10px;background:var(--mist)}
+.ed .title-in input{font-family:var(--serif);font-size:26px;padding:14px}
+.preview-img{max-height:220px;border-radius:6px;margin-top:8px}
+.blocks{display:grid;gap:14px}
+.blk{border:1px solid var(--line);border-radius:6px;padding:16px;background:#fff;display:grid;gap:12px}
+.blk-h{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.blk-h .tools{display:flex;gap:6px}
+.blk-h .tools button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:14px;display:grid;place-items:center}
+.blk-h .tools button:hover{border-color:var(--ink)}
+.blk textarea{min-height:180px;font-family:var(--serif);font-size:17px;line-height:1.6}
+.blk .hint{font-size:13px;color:var(--ink-faint);font-weight:400}
+.vid-mode{display:flex;gap:16px;font-size:14px}
+.vid-mode label{display:flex;gap:6px;align-items:center}
+.add-row{display:flex;gap:10px;flex-wrap:wrap;padding:16px;border:1px dashed var(--ink-faint);border-radius:6px;justify-content:center;align-items:center}
+.add-row span{font-size:14px;color:var(--ink-soft);margin-right:6px}
+.pub{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:8px}
+.adm .status{font-size:15px}
+.adm .status.ok{color:var(--green)}
+.adm .status.err{color:#A6413A}
+.notice{background:#FFF8E6;border:1px solid #EBD9A6;border-radius:8px;padding:28px}
+.notice h2{font-size:24px;margin-bottom:10px}
+.notice ol{margin:12px 0 0;padding-left:20px;color:var(--ink-soft)}
+.notice code{background:#fff;padding:1px 6px;border-radius:3px;font-size:14px}
+@media (max-width:640px){.choose,.ed .row2{grid-template-columns:1fr}.card{padding:24px}}
+</style>
+</head>
+<body>
+<div class="adm-bar"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true" style="width:32px;height:32px"><path d="M4 30 Q20 6 36 30" fill="none" stroke="#7FC8AA" stroke-width="3"/><path d="M4 30h32" stroke="#7FC8AA" stroke-width="3"/></svg><div><b>Шийдэл</b><span>Админ</span></div></a>
+  <button id="logout" hidden>Гарах</button>
+</div></div>
+
+<main class="adm" id="app"><p class="loading">Ачаалж байна...</p></main>
+
+<script src="config.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async function(){
+/* Нэвтрэх нэрийг Supabase-ийн имэйл болгон хөрвүүлнэ.
+   Supabase дээр хэрэглэгч үүсгэхдээ: <нэвтрэх нэр жижиг үсгээр>@admin.shiidel.mn
+   Нууц үг энэ кодонд хадгалагдахгүй, зөвхөн Supabase дээр байна. */
+const LOGIN_DOMAIN = "admin.shiidel.mn";
+const MAX_MB = 50;
+
+const esc=Site.esc, app=document.getElementById("app"), logoutBtn=document.getElementById("logout");
+if(!Site.cmsReady){
+  app.innerHTML=`<div class="notice"><h2>Админ хэсэг тохируулагдаагүй байна</h2>
+  <p>Блог, судалгаа нийтлэхийн тулд Supabase холбох шаардлагатай. README.md файлын «Админ тохируулах» хэсгийн дагуу:</p>
+  <ol><li>supabase.com дээр үнэгүй төсөл үүсгэнэ.</li><li><code>supabase-setup.sql</code> файлыг SQL Editor дээр ажиллуулна.</li><li>Project URL болон anon key-г <code>config.js</code> файлд бичнэ.</li><li>Admin хэрэглэгчээ Authentication хэсэгт үүсгэнэ.</li></ol></div>`;
+  return;
+}
+const db = await Site.client();
+if(!db){ app.innerHTML='<p class="status err">Supabase-тэй холбогдож чадсангүй. Интернэт холболтоо шалгаад дахин ачаална уу.</p>'; return; }
+
+logoutBtn.addEventListener("click", async()=>{ await db.auth.signOut(); showLogin(); });
+const {data:{session}} = await db.auth.getSession();
+session ? showHome() : showLogin();
+
+/* ---------- login ---------- */
+function showLogin(){
+  logoutBtn.hidden=true;
+  app.innerHTML=`<div class="card login"><h1>Нэвтрэх</h1><p class="lede">Блог болон судалгаа нийтлэхийн тулд нэвтэрнэ үү.</p>
+  <form id="lf"><label class="field">Нэвтрэх нэр<input name="u" autocomplete="username" required></label>
+  <label class="field">Нууц үг<input name="p" type="password" autocomplete="current-password" required></label>
+  <button class="btn" type="submit">Нэвтрэх</button><p class="status" id="ls" role="status"></p></form></div>`;
+  document.getElementById("lf").addEventListener("submit", async e=>{
+    e.preventDefault(); const f=e.target, st=document.getElementById("ls");
+    let u=f.u.value.trim(); if(!u.includes("@")) u=u.toLowerCase()+"@"+LOGIN_DOMAIN;
+    st.className="status"; st.textContent="Нэвтэрч байна...";
+    const {error}=await db.auth.signInWithPassword({email:u, password:f.p.value});
+    if(error){ st.textContent="Нэвтрэх нэр эсвэл нууц үг буруу байна."; st.classList.add("err"); return; }
+    showHome();
+  });
+}
+
+/* ---------- dashboard ---------- */
+async function showHome(){
+  logoutBtn.hidden=false;
+  app.innerHTML=`<h1>Юу нийтлэх вэ?</h1><p class="lede">Нэгийг нь сонгоод гарчиг, текст, зураг, видеогоо нэмж нийтэлнэ.</p>
+  <div class="choose">
+    <button data-new="blog"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="6" width="28" height="28" rx="4" fill="none" stroke="#2C8566" stroke-width="2"/><path d="M12 15h16M12 21h16M12 27h10" stroke="#2C8566" stroke-width="2"/></svg><b>Блог нэмэх</b><span>Бодол, туршлага, практик зөвлөгөө</span></button>
+    <button data-new="insight"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34h28" stroke="#1E5C86" stroke-width="2"/><path d="M11 30V20M19 30V12M27 30V17" stroke="#1E5C86" stroke-width="3"/></svg><b>Судалгаа нэмэх</b><span>Судалгаа, дүн шинжилгээ, тайлан</span></button>
+  </div>
+  <div class="mine"><h2>Нийтлэгдсэн</h2><div id="mine"><p class="loading">Ачаалж байна...</p></div></div>`;
+  app.querySelectorAll("[data-new]").forEach(b=>b.addEventListener("click",()=>showEditor(b.dataset.new)));
+  const {data,error}=await db.from("posts").select("id,type,title,created_at").order("created_at",{ascending:false});
+  const el=document.getElementById("mine");
+  if(error){ el.innerHTML=`<p class="status err">Жагсаалт ачаалж чадсангүй: ${esc(error.message)}</p>`; return; }
+  if(!data.length){ el.innerHTML='<p class="empty">Одоогоор нийтлэл алга. Дээрээс эхний нийтлэлээ нэмээрэй.</p>'; return; }
+  el.innerHTML=`<ul>${data.map(p=>`<li><a href="post.html?id=${p.id}" target="_blank" rel="noopener">${esc(p.title)}<span class="t">${p.type==="insight"?"Судалгаа":"Блог"}, ${Site.date(p.created_at)}</span></a><button class="del" data-del="${p.id}" data-title="${esc(p.title)}">Устгах</button></li>`).join("")}</ul>`;
+  el.addEventListener("click", async e=>{
+    const b=e.target.closest("[data-del]"); if(!b) return;
+    if(!confirm(`«${b.dataset.title}» нийтлэлийг устгах уу? Энэ үйлдлийг буцаах боломжгүй.`)) return;
+    const {error}=await db.from("posts").delete().eq("id",b.dataset.del);
+    if(error) alert("Устгаж чадсангүй: "+error.message); else b.closest("li").remove();
+  });
+}
+
+/* ---------- editor ---------- */
+function showEditor(type){
+  const isIns=type==="insight";
+  app.innerHTML=`<p><a class="back" href="#" id="back">← Буцах</a></p>
+  <h1>${isIns?"Шинэ судалгаа":"Шинэ блог"}</h1>
+  <form class="card ed" id="ef" novalidate>
+    <label class="field title-in">Гарчиг<input name="title" required placeholder="Нийтлэлийн гарчиг"></label>
+    <label class="field">Товч тайлбар<textarea name="summary" rows="2" style="min-height:0" placeholder="Жагсаалтад харагдах нэг хоёр өгүүлбэр"></textarea></label>
+    <div class="row2">
+      <label class="field">Менежментийн чиглэл<select name="area"><option value="all">Ерөнхий</option>${AREAS.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join("")}</select></label>
+      <label class="field">Зохиогч<input name="author" placeholder="Жишээ: Б.Цогтсайхан"></label>
+    </div>
+    <label class="field">Нүүр зураг (заавал биш)<input type="file" name="cover" accept="image/*"><img class="preview-img" id="coverPrev" hidden alt=""></label>
+    <div><p class="field" style="margin-bottom:10px">Агуулга</p><div class="blocks" id="blocks"></div></div>
+    <div class="add-row"><span>Нэмэх:</span>
+      <button type="button" class="btn small ghost" data-add="text">Текст</button>
+      <button type="button" class="btn small ghost" data-add="image">Зураг</button>
+      <button type="button" class="btn small ghost" data-add="video">Видео</button>
+    </div>
+    <div class="pub"><p class="status" id="es" role="status"></p><button class="btn" type="submit">Нийтлэх</button></div>
+  </form>`;
+  document.getElementById("back").addEventListener("click",e=>{e.preventDefault(); if(confirm("Хадгалаагүй өөрчлөлт устах болно. Буцах уу?")) showHome();});
+  const f=document.getElementById("ef"), blocks=document.getElementById("blocks");
+  f.cover.addEventListener("change",()=>preview(f.cover, document.getElementById("coverPrev")));
+  const names={text:"Текст",image:"Зураг",video:"Видео"};
+  function addBlock(kind){
+    const d=document.createElement("div"); d.className="blk"; d.dataset.kind=kind;
+    const tools=`<span class="tools"><button type="button" data-mv="-1" aria-label="Дээш">↑</button><button type="button" data-mv="1" aria-label="Доош">↓</button><button type="button" data-rm aria-label="Устгах">✕</button></span>`;
+    if(kind==="text") d.innerHTML=`<div class="blk-h"><span>Текст <span class="hint">Хоосон мөрөөр догол мөр тусгаарлана. «## » гэж эхэлбэл дэд гарчиг болно.</span></span>${tools}</div><textarea class="field" style="border:1px solid var(--line);border-radius:4px;padding:12px"></textarea>`;
+    if(kind==="image") d.innerHTML=`<div class="blk-h"><span>Зураг</span>${tools}</div><label class="field"><input type="file" accept="image/*" data-file></label><img class="preview-img" hidden alt=""><label class="field">Тайлбар (заавал биш)<input data-cap></label>`;
+    if(kind==="video") d.innerHTML=`<div class="blk-h"><span>Видео</span>${tools}</div>
+      <div class="vid-mode"><label><input type="radio" name="vm${Date.now()}" value="upload" checked> Файл оруулах</label><label><input type="radio" name="vm${Date.now()}" value="youtube"> YouTube холбоос</label></div>
+      <label class="field" data-up><input type="file" accept="video/*" data-file><span class="hint" style="font-size:13px">${MAX_MB}MB хүртэл. Урт видеог YouTube-д байршуулаад холбоосыг нь оруулахыг зөвлөж байна.</span></label>
+      <label class="field" data-yt hidden>YouTube холбоос<input data-url placeholder="https://www.youtube.com/watch?v=..."></label>
+      <label class="field">Тайлбар (заавал биш)<input data-cap></label>`;
+    blocks.appendChild(d);
+    const fi=d.querySelector("[data-file]"); if(fi && kind==="image") fi.addEventListener("change",()=>preview(fi,d.querySelector(".preview-img")));
+    d.querySelectorAll(".vid-mode input").forEach(r=>r.addEventListener("change",()=>{const yt=r.value==="youtube"&&r.checked; d.querySelector("[data-yt]").hidden=!yt; d.querySelector("[data-up]").hidden=yt;}));
+    (d.querySelector("textarea")||d.querySelector("input")).focus();
+  }
+  addBlock("text");
+  f.addEventListener("click",e=>{
+    const a=e.target.closest("[data-add]"); if(a) addBlock(a.dataset.add);
+    const blk=e.target.closest(".blk"); if(!blk) return;
+    if(e.target.closest("[data-rm]")) blk.remove();
+    const mv=e.target.closest("[data-mv]");
+    if(mv){ const dir=+mv.dataset.mv; const sib=dir<0?blk.previousElementSibling:blk.nextElementSibling; if(sib) dir<0?blocks.insertBefore(blk,sib):blocks.insertBefore(sib,blk); }
+  });
+  f.addEventListener("submit", async e=>{
+    e.preventDefault();
+    const st=document.getElementById("es"), btn=f.querySelector("button[type=submit]");
+    const say=(t,c)=>{st.className="status"+(c?" "+c:""); st.textContent=t;};
+    if(!f.title.value.trim()){ say("Гарчиг оруулна уу.","err"); f.title.focus(); return; }
+    const files=[f.cover.files[0],...[...blocks.querySelectorAll("[data-file]")].map(i=>i.files[0])].filter(Boolean);
+    const big=files.find(x=>x.size>MAX_MB*1024*1024); if(big){ say(`«${big.name}» файл ${MAX_MB}MB-аас том байна.`,"err"); return; }
+    btn.disabled=true;
+    try{
+      let cover_url=null;
+      if(f.cover.files[0]){ say("Нүүр зураг байршуулж байна..."); cover_url=await upload(f.cover.files[0], type); }
+      const out=[]; const list=[...blocks.querySelectorAll(".blk")];
+      for(let i=0;i<list.length;i++){
+        const b=list[i], kind=b.dataset.kind, cap=(b.querySelector("[data-cap]")||{}).value||"";
+        if(kind==="text"){ const v=b.querySelector("textarea").value.trim(); if(v) out.push({type:"text",value:v}); continue; }
+        if(kind==="video" && !b.querySelector("[data-yt]").hidden){ const u=b.querySelector("[data-url]").value.trim(); if(u){ if(!Site.ytId(u)) throw new Error("YouTube холбоос буруу байна: "+u); out.push({type:"youtube",url:u,caption:cap}); } continue; }
+        const file=b.querySelector("[data-file]").files[0]; if(!file) continue;
+        say(`Файл байршуулж байна (${i+1}/${list.length}): ${file.name}`);
+        out.push({type:kind, url:await upload(file,type), caption:cap});
+      }
+      if(!out.length) throw new Error("Агуулга хоосон байна. Текст, зураг эсвэл видео нэмнэ үү.");
+      say("Нийтэлж байна...");
+      const {data,error}=await db.from("posts").insert({type, title:f.title.value.trim(), summary:f.summary.value.trim(), area:f.area.value, author:f.author.value.trim()||"Шийдэл баг", cover_url, blocks:out, published:true}).select("id").single();
+      if(error) throw error;
+      app.innerHTML=`<div class="card"><h1>Нийтлэгдлээ.</h1><p class="lede">«${esc(f.title.value)}» ${isIns?"судалгаа":"блог"} сайт дээр харагдаж байна.</p>
+        <div class="ctas" style="margin-top:28px"><a class="btn" href="post.html?id=${data.id}" target="_blank" rel="noopener">Нийтлэлийг харах</a><button class="btn ghost" id="again">Буцах</button></div></div>`;
+      document.getElementById("again").addEventListener("click",showHome);
+    }catch(err){ say("Алдаа: "+(err.message||err),"err"); btn.disabled=false; }
+  });
+}
+function preview(input,img){ const fl=input.files[0]; if(!fl){img.hidden=true;return;} img.src=URL.createObjectURL(fl); img.hidden=false; }
+async function upload(file, folder){
+  const ext=(file.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"");
+  const path=`${folder}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+  const {error}=await db.storage.from("media").upload(path, file, {cacheControl:"31536000", contentType:file.type});
+  if(error) throw new Error("Файл байршуулж чадсангүй: "+error.message);
+  return db.storage.from("media").getPublicUrl(path).data.publicUrl;
+}
+})();
+</script>
+</body>
+</html>
