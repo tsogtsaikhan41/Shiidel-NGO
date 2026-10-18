@@ -14,8 +14,8 @@ window.SITE_CONFIG = {
 
   // Админ хэсэг (блог, судалгаа нийтлэх) — README-ийн "Админ тохируулах" хэсгийг үзнэ үү.
   // Хоосон үед сайт жишээ нийтлэлүүдийг харуулна.
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  supabaseUrl: "https://ifldfntvyvsjetzrssdx.supabase.co",
+  supabaseAnonKey: "sb_publishable_90DVCdPNPjK0yB1ITd_0ow_YuMYSlkx",
 
   // Заавал биш: "Бидний тухай" хэсэгт харуулах зураг (жишээ: "images/team.jpg")
   aboutImage: "",
